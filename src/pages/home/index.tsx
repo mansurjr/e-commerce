@@ -4,9 +4,10 @@ import ProductView from "../../components/product-view/ProductView";
 import type { IProduct } from "../../types";
 import SwiperCor from "./components/SwiperCor";
 import CategoryGrid from "./components/CategoryGrid";
-import NewArrivals from "./components/NewArrivals";
 import Services from "./components/Services";
 import Articles from "./components/Articles";
+import SaleUp from "./components/SaleUp";
+import Newsletter from "../../components/newsletter";
 
 const Home = () => {
   const data = useFetch<{ products: IProduct[] }>("/products", {
@@ -16,12 +17,13 @@ const Home = () => {
   return (
     <div className="container">
       <h2>Home</h2>
-      <ProductView data={data?.products} />
       <SwiperCor />
       <CategoryGrid />
-      <NewArrivals />
+      <ProductView data={data?.products} />
       <Services />
+      <SaleUp />
       <Articles />
+      <Newsletter />
     </div>
   );
 };
