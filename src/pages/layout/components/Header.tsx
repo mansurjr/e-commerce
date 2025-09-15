@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
   CircleUser,
@@ -13,6 +13,8 @@ import headerLogo from "../../../assets/header_svgs/3legant..svg";
 import coupon from "../../../assets/header_svgs/ticket-percent.svg";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "text-[#141718] font-semibold"
@@ -66,7 +68,10 @@ const Header = () => {
                 <Menu className="h-5 w-5" />
               </button>
 
-              <div className="flex-shrink-0">
+              <div
+                className="flex-shrink-0 cursor-pointer"
+                onClick={() => navigate("/")}
+              >
                 <img src={headerLogo} alt="elegant logo" />
               </div>
             </div>
@@ -89,15 +94,18 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <button className="hidden md:flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
+              <button className="hidden md:flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                 <Search className="h-5 w-5" />
               </button>
 
-              <button className="hidden sm:flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
+              <button
+                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
+                onClick={() => navigate("/account")}
+              >
                 <CircleUser className="h-5 w-5" />
               </button>
 
-              <button className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
+              <button className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
                 <ShoppingBag className="h-5 w-5" />
               </button>
             </div>
