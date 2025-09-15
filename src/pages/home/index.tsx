@@ -15,7 +15,7 @@ const Home = () => {
   }).data;
 
   return (
-    <div className="container">
+    <div className="">
       <h2>Home</h2>
       <SwiperCor />
       <CategoryGrid />
