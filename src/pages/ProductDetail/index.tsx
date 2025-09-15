@@ -1,5 +1,5 @@
 import { memo } from "react";
-import ProductDetailView from "./ProductDetailView";
+import ProductDetailView from "./components/ProductDetailView";
 
 const ProductDetail = () => {
   return (
