@@ -16,7 +16,6 @@ const Home = () => {
 
   return (
     <div className="">
-      <h2>Home</h2>
       <SwiperCor />
       <CategoryGrid />
       <ProductView data={data?.products} />

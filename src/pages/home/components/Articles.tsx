@@ -7,7 +7,7 @@ import UnderlineLink from "../../../components/Underline";
 const ArticlesView = () => {
   return (
     <section>
-      <div className=" container w-full py-20 px-8">
+      <div className="container w-full py-20 px-8">
         <div className="mb-10">
           <h3 className="font-[500] text-3xl">Articles</h3>
         </div>

@@ -5,7 +5,8 @@ import grt3 from "../../../assets/grit03.png";
 
 const CategoryGrid = () => {
   return (
-    <div className="">
+    <section className="mb-12">
+    <div className="container">
       <div className="flex justify-between py-4">
         <div>
           <h5 className="font-medium text-[60px]">
@@ -52,6 +53,7 @@ const CategoryGrid = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
