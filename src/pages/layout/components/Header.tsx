@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   ArrowRight,
@@ -30,6 +30,14 @@ const Header = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden"; 
+    } else {
+      document.body.style.overflow = ""; 
+    }
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -115,15 +123,15 @@ const Header = () => {
         {/* mobile section */}
 
         {isMobileMenuOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 z-50 md:hidden">
+          <div className="fixed inset-0 bg-black/50 z-50 md:hidden">
             <div className="absolute inset-0" onClick={closeMobileMenu} />
           </div>
         )}
 
         <div
-          className={`fixed top-0 left-0 h-full w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
+          className={`fixed  top-0 left-0 w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          }  min-h-screen `}
         >
           <div className="flex flex-col h-full">
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
@@ -167,17 +175,14 @@ const Header = () => {
                 >
                   Contact Us
                 </NavLink>
-              </div>
-            </div>
 
-            <div className="p-4 border-t border-gray-200">
-              <div className="flex items-center justify-center space-x-6">
-                <button className="flex h-10 w-10 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
-                  <CircleUser className="h-5 w-5" />
-                </button>
-                <button className="flex h-10 w-10 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
-                  <ShoppingBag className="h-5 w-5" />
-                </button>
+                <NavLink
+                  to="/account"
+                  className="block text-lg font-medium text-[#6C7275] hover:text-[#141718] transition-colors duration-200"
+                  onClick={closeMobileMenu}
+                >
+                  Account
+                </NavLink>
               </div>
             </div>
           </div>
