@@ -1,10 +1,9 @@
-import { memo } from "react";
+import { memo } from 'react';
+import { Blogarticles } from "../../../static";
+import UnderlineLink from '../../../components/Underline';
+import RightArrow from '../../../components/RightArrow';
 
-import { articles } from "../../../static";
-import RightArrow from "../../../components/RightArrow";
-import UnderlineLink from "../../../components/Underline";
-
-const ArticlesView = () => {
+const BlogArticles = () => {
   return (
     <section>
       <div className="container w-full py-20 px-8">
@@ -13,7 +12,7 @@ const ArticlesView = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
+          {Blogarticles.map((article) => (
             <a
               href={article.link}
               key={article.id}
@@ -45,4 +44,4 @@ const ArticlesView = () => {
   );
 };
 
-export default memo(ArticlesView);
+export default memo(BlogArticles);

@@ -18,6 +18,7 @@ const Home = () => {
   );
 
   return (
+    <div className="">
     <div>
       <h2>Home</h2>
       <SwiperCor />
