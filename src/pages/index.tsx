@@ -1,5 +1,6 @@
 import { lazy, memo, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
+import GlobalLoading from "../components/GlobalLoading";
 
 const MainLayout = lazy(() => import("./layout"));
 
@@ -18,7 +19,7 @@ const Auth = lazy(() => import("./auth"));
 
 const AppRouter = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<GlobalLoading />}>
       {useRoutes([
         // public routes with layout
         {

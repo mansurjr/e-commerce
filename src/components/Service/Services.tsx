@@ -1,8 +1,8 @@
 import { memo } from "react";
-import services_truck from "../../../assets/fast delivery.svg";
-import services_camera from "../../../assets/money.svg";
-import services_lock from "../../../assets/call.svg";
-import services_phone from "../../../assets/lock 01.png";
+import services_truck from "../../assets/fast delivery.svg" ;
+import services_camera from "../../assets/money.svg";
+import services_lock from "../../assets/call.svg";
+import services_phone from "../../assets/lock 01.png";
 
 const Services = () => {
   return (
