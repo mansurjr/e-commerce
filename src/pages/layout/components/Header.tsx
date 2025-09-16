@@ -11,9 +11,12 @@ import {
 
 import headerLogo from "../../../assets/header_svgs/3legant..svg";
 import coupon from "../../../assets/header_svgs/ticket-percent.svg";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../lib";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const carts = useSelector((state: RootState) => state.cart.value);
+  const navigate = useNavigate()
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     isActive
@@ -56,8 +59,7 @@ const Header = () => {
 
             <button
               className="absolute right-4 p-1 hover:bg-gray-200 rounded"
-              onClick={() => setIsVisible(false)}
-            >
+              onClick={() => setIsVisible(false)}>
               <X className="h-4 w-4 text-gray-600" />
             </button>
           </div>
@@ -71,8 +73,7 @@ const Header = () => {
               <button
                 className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 md:hidden"
                 onClick={toggleMobileMenu}
-                aria-label="Toggle mobile menu"
-              >
+                aria-label="Toggle mobile menu">
                 <Menu className="h-5 w-5" />
               </button>
 
@@ -113,14 +114,16 @@ const Header = () => {
                 <CircleUser className="h-5 w-5" />
               </button>
 
-              <button className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200 cursor-pointer">
+              <button onClick={()=>{navigate("/cart")}} className="relative flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200">
                 <ShoppingBag className="h-5 w-5" />
+
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-white text-[10px] font-medium">
+                  {carts.length}
+                </span>
               </button>
             </div>
           </div>
         </div>
-
-        {/* mobile section */}
 
         {isMobileMenuOpen && (
           <div className="fixed inset-0 bg-black/50 z-50 md:hidden">
@@ -131,6 +134,7 @@ const Header = () => {
         <div
           className={`fixed  top-0 left-0 w-80 bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden ${
             isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+          }`}>
           }  min-h-screen `}
         >
           <div className="flex flex-col h-full">
@@ -139,8 +143,7 @@ const Header = () => {
               <button
                 onClick={closeMobileMenu}
                 className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100 transition-colors duration-200"
-                aria-label="Close mobile menu"
-              >
+                aria-label="Close mobile menu">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -150,29 +153,25 @@ const Header = () => {
                 <NavLink
                   to="/"
                   className="block text-lg font-medium text-[#6C7275] hover:text-[#141718] transition-colors duration-200"
-                  onClick={closeMobileMenu}
-                >
+                  onClick={closeMobileMenu}>
                   Home
                 </NavLink>
                 <NavLink
                   to="/shop"
                   className="block text-lg font-medium text-[#6C7275] hover:text-[#141718] transition-colors duration-200"
-                  onClick={closeMobileMenu}
-                >
+                  onClick={closeMobileMenu}>
                   Shop
                 </NavLink>
                 <NavLink
                   to="/product"
                   className="block text-lg font-medium text-[#6C7275] hover:text-[#141718] transition-colors duration-200"
-                  onClick={closeMobileMenu}
-                >
+                  onClick={closeMobileMenu}>
                   Product
                 </NavLink>
                 <NavLink
                   to="/contact"
                   className="block text-lg font-medium text-[#6C7275] hover:text-[#141718] transition-colors duration-200"
-                  onClick={closeMobileMenu}
-                >
+                  onClick={closeMobileMenu}>
                   Contact Us
                 </NavLink>
 
