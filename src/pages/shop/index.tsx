@@ -4,13 +4,20 @@ import ProductView from "../../components/product-view/ProductView";
 import type { IProduct } from "../../types";
 
 const Shop = () => {
-  const data = useFetch<{ products: IProduct[] }>("/products", {
-    limit: 4,
-  }).data;
+  const { data, loading, error } = useFetch<{ products: IProduct[] }>(
+    "/products",
+    {
+      limit: 4,
+    }
+  );
   return (
     <div className="container">
       <h2>Shop</h2>
-      <ProductView data={data?.products} />
+      <ProductView
+        data={data?.products ?? []}
+        loading={loading}
+        error={error}
+      />
     </div>
   );
 };
