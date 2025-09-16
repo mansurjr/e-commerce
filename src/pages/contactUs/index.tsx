@@ -1,9 +1,16 @@
 import { memo } from 'react';
+import WelcomeTxt from './components/Welcome-txt';
+import AboutUs from './components/About-us';
+import ContactUsIn from './components/Contact-us';
+import FotterContactUs from './components/fotter-contact-us';
 
 const ContactUs = () => {
   return (
     <div className="ContactUs">
-      <h2>ContactUs</h2>
+      <WelcomeTxt/>
+      <AboutUs/>
+      <ContactUsIn/>
+      <FotterContactUs/>
     </div>
   );
 };
