@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
-import type { AxiosError, AxiosResponse } from "axios";
+import type { AxiosError } from "axios";
 
 interface IParams {
   limit?: number;
@@ -8,21 +8,47 @@ interface IParams {
   skip?: number;
 }
 
-export const useFetch = <T = unknown>(endpoint: string, params?: IParams) => {
-  const [data, setData] = useState<T | null>(null);
-  const [error, setError] = useState<AxiosError | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+interface FetchState<T> {
+  data: T | null;
+  error: string | null;
+  loading: boolean;
+}
+
+export const useFetch = <T = unknown>(
+  endpoint: string,
+  params?: IParams,
+  immediate: boolean = true
+) => {
+  const [state, setState] = useState<FetchState<T>>({
+    data: null,
+    error: null,
+    loading: immediate,
+  });
+
+  const fetchData = async (customParams?: IParams) => {
+    setState((prev) => ({ ...prev, loading: true, error: null }));
+
+    try {
+      const res = await api.get<T>(endpoint, {
+        params: customParams ?? params,
+      });
+      setState({ data: res.data, error: null, loading: false });
+    } catch (err) {
+      const error = err as AxiosError;
+      setState({
+        data: null,
+        error: error.message || "Unknown error",
+        loading: false,
+      });
+    }
+  };
 
   useEffect(() => {
-    setLoading(true);
-
-    api
-      .get<T>(endpoint, { params })
-      .then((res: AxiosResponse<T>) => setData(res.data))
-      .catch((err: AxiosError) => setError(err))
-      .finally(() => setLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (immediate) {
+      fetchData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint, JSON.stringify(params)]);
 
-  return { data, error, loading };
+  return { ...state, refetch: fetchData };
 };

@@ -122,4 +122,10 @@ export interface Meta {
   qrCode?: string;
 }
 
+export type IStoreProduct = IProduct & {
+  quantity: number; // default 0 if not in cart
+  liked: boolean; // 1 if liked, 0 if not
+};
+
+
 // ---------------------------------------------------------- End Product

@@ -17,8 +17,8 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 160px;
+  padding-right: 160px;
   box-sizing :border-box;
 }
 .container__salesUp {
@@ -31,4 +31,9 @@
 
 .swiper-button-next{
   color: bisque;
+@media (max-width: 375px) {
+  .container{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
